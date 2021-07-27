@@ -6,17 +6,31 @@
 */
 
 const div = document.querySelector('div')
-const elementsInsideDiv = Array.from(div.children)
+const $h2 = document.querySelector('h2')
+const $egg = document.querySelector('.egg')
+const $button = document.querySelector('button')
 
-elementsInsideDiv.forEach(element => {
-  element.addEventListener('click', () => {
-    console.log('Clicou no filho da div.')
-  })
-})
+const divChildren = ['h1', 'p']
 
-div.addEventListener('click', () => {
-  console.log('Clicou na div.')
-})
+const showH2Message = ({ target }) => {
+  const element = target.localName
+  const isElement = divChildren.some(item => item === element)
+
+  if (isElement) {
+    $h2.textContent = 'clique em algum filho da div'
+    return
+  }
+
+  $h2.textContent = 'Clique na div'
+
+}
+
+const showCopy = () => console.log('Texto Copiado')
+
+const showMousePosition = ({ offsetX, offsetY }) => $egg.textContent = `Eixo X: ${offsetX} | Eixo Y: ${offsetY}`
+
+const changeColor = () => $egg.style.backgroundColor = "lightgoldenrodyellow"
+
 
 /*
   02
@@ -33,6 +47,7 @@ div.addEventListener('click', () => {
   - Faça com que a mensagem de clique na div e a mensagem de clique em algum
     filho da div, ao invés de ser exibida no console, seja inserida neste h2.
 */
+div.addEventListener('click', showH2Message)
 
 /*
   04
@@ -41,6 +56,8 @@ div.addEventListener('click', () => {
     seja exibida no console.
 */
 
+$h2.addEventListener('copy', showCopy)
+
 /*
   05
 
@@ -48,6 +65,9 @@ div.addEventListener('click', () => {
     o texto que ela tem por 
     "Eixo X: COORDENADA_EIXO_X | Eixo Y: COORDENADA_EIXO_Y".
 */
+$egg.addEventListener('mousemove', showMousePosition)
+
+
 
 /*
   06
@@ -56,12 +76,15 @@ div.addEventListener('click', () => {
     clicado.
 */
 
+$button.addEventListener('click', changeColor)
+
+
 /*
   07
-
+ 
   - Se o array de pessoas abaixo conter, no mínimo, um(a) Front-end developer,
     exiba a mensagem abaixo no console.
-
+ 
     "O array people contém, no mínimo, um(a) Front-end developer."
 */
 
@@ -76,3 +99,7 @@ const people = [
   { id: 8, name: 'Matheus Manucci', profession: 'Piloto' },
   { id: 9, name: 'Hamilton Silva', profession: 'Advogado' }
 ]
+
+const isFront = people.some(item => item.profession === 'Advogado')
+
+isFront && console.log("O array people contém, no mínimo, um(a) Front-end developer.")
