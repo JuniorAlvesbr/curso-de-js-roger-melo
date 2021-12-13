@@ -6,19 +6,19 @@
 */
 
 class Animal {
-  constructor (name) {
+  constructor(name) {
     this.name = name
   }
 }
 
 class Rabbit extends Animal {
-  constructor (name) {
-    this.name = name
+  constructor(name) {
+    super(name)
     this.created = new Date()
   }
 }
 
-// let rabbit = new Rabbit('White Rabbit')
+let rabbit = new Rabbit('White Rabbit')
 
 /*
   02
@@ -27,11 +27,18 @@ class Rabbit extends Animal {
     funcione.
 */
 
-// const counter = new Counter()
+class Counter {
+  constructor() { }
 
-// counter.getValue()
-// counter.increment()
-// counter.getValue()
+  getValue() { }
+  increment() { }
+}
+
+const counter = new Counter()
+
+counter.getValue()
+counter.increment()
+counter.getValue()
 
 /*
   03
@@ -47,7 +54,7 @@ const values = [
   '',
   [],
   NaN,
-  () => {}
+  () => { }
 ]
 
 /*
@@ -60,62 +67,62 @@ const values = [
     funcione.
 */
 
-// class Clock {
-//   constructor ({ template }) {
-//     this.template = template
-//   }
+class Clock {
+  constructor({ template }) {
+    this.template = template
+  }
 
-//   render () {
-//     const date = new Date()
-//     let hours = date.getHours()
-//     let minutes = date.getMonth()
-//     let seconds = date.getSeconds()
+  render() {
+    const date = new Date()
+    let hours = date.getHours()
+    let minutes = date.getMonth()
+    let seconds = date.getSeconds()
 
-//     if (hours < 10) {
-//       hours = `0${hours}`
-//     }
+    if (hours < 10) {
+      hours = `0${hours}`
+    }
 
-//     if (minutes < 10) {
-//       minutes = `0${minutes}`
-//     }
+    if (minutes < 10) {
+      minutes = `0${minutes}`
+    }
 
-//     if (seconds < 10) {
-//       seconds = `0${seconds}`
-//     }
+    if (seconds < 10) {
+      seconds = `0${seconds}`
+    }
 
-//     const formattedTime = this.template
-//       .replace('h', hours)
-//       .replace('m', minutes)
-//       .replace('s', seconds)
+    const formattedTime = this.template
+      .replace('h', hours)
+      .replace('m', minutes)
+      .replace('s', seconds)
 
-//     console.log(formattedTime)
-//   }
+    console.log(formattedTime)
+  }
 
-//   start () {
-//     this.render()
-//     this.timer = setInterval(() => this.render(), 1000)
-//   }
+  start() {
+    this.render()
+    this.timer = setInterval(() => this.render(), 1000)
+  }
 
-//   stop () {
-//     clearInterval(this.timer)
-//   }
-// }
+  stop() {
+    clearInterval(this.timer)
+  }
+}
 
-// class ExtendedClock extends Clock {
-//   constructor ({ options }) {
-//     super(options)
-    
-//     let { precision = 1000 } = options
-//     this.precision = precision
-//   }
+class ExtendedClock extends Clock {
+  constructor(options) {
+    super(options)
 
-//   start () {
-//     this.render()
-//     this.timer = setInterval(() => this.render(), this.precision)
-//   }
-// }
+    let { precision = 1000 } = options
+    this.precision = precision
+  }
 
-// const clock = ExtendedClock({ template: 'h:m:s', precision: 1000 })
+  start() {
+    this.render()
+    this.timer = setInterval(() => this.render(), this.precision)
+  }
+}
+
+const clock = new ExtendedClock({ template: 'h:m:s', precision: 1000 })
 
 // clock.start()
 
@@ -126,7 +133,14 @@ const values = [
     caractere for inserido no textarea, exiba no parágrafo a quantidade de 
     caracteres que o textarea contém.
 */
+const $textArea = document.querySelector('[data-js="textarea"]')
+const $paragraph = document.querySelector('[data-js="paragraph"]')
 
+const countCharacterNumbers = () => {
+  console.log(($textArea.value).length)
+}
+
+// $textArea.addEventListener('input', countCharacterNumbers)
 
 
 /*
